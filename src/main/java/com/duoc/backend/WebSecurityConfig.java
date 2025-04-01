@@ -23,7 +23,8 @@ class WebSecurityConfig{
                 .csrf((csrf) -> csrf
                         .disable())
                 .authorizeHttpRequests( authz -> authz
-                        .requestMatchers(HttpMethod.POST,Constants.LOGIN_URL).permitAll()
+                        .requestMatchers(HttpMethod.POST, Constants.LOGIN_URL).permitAll()
+                        .requestMatchers(HttpMethod.GET, Constants.LOGIN_URL).permitAll()
                         .anyRequest().authenticated())
                 .addFilterAfter(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
